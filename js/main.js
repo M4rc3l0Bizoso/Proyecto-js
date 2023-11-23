@@ -1,14 +1,12 @@
 let opciones = ["piedra", "papel", "tijera"];
 
-
-
 function ppt () {
     let jugar = true;
 
     while (jugar){
-        let eleccionJugador = prompt("Elige piedra, papel o tijera").toLowerCase();
+        let eleccionJugador = prompt("Elige piedra, papel o tijera (si te arrepentiste pone 'salir')").toLowerCase();
 
-        if (eleccionJugador === 'esc'){
+        if (eleccionJugador === 'salir'){
             jugar = false;
             console.log("hasta luego")
             break;
