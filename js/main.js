@@ -1,52 +1,68 @@
 const opciones = ["piedra", "papel", "tijera"];
 
-const opcionRandom = () => opciones [Math.floor(Math.random() * 3)];
+const opcionRandom = () => opciones[Math.floor(Math.random() * 3)];
 
 const resultados = {
     empate: "Empate :o",
-    victoria:"Ganaste :)",
-    derrota: "Te gano un bot :("
+    victoria: "Ganaste :)",
+    derrota: "Te ganó un bot :(",
 };
 
-const jugar = () => {
-    let jugar = true;
+const mostrarResultado = (mensaje) => {
+    const resultadoElement = document.getElementById("resultado");
+    resultadoElement.innerHTML += mensaje;
+};
 
+const jugarRonda = async () => {
+    let eleccionJugador = prompt(
+        "Elige piedra, papel o tijera (si te arrepentiste pon 'salir')"
+    ).toLowerCase();
 
-    while (jugar){
-        let eleccionJugador = prompt("Elige piedra, papel o tijera (si te arrepentiste pone 'salir')").toLowerCase();
-
-        if (eleccionJugador === 'salir'){
+        if (eleccionJugador === "salir") {
             jugar = false;
-            console.log("hasta luego")
-            break;
+            mostrarResultado("<p>Hasta luego</p>");
+            return;
         }
 
-
-        if (opciones.includes(eleccionJugador)){
+        if (opciones.includes(eleccionJugador)) {
             let eleccionBot = opcionRandom();
 
-        console.log("Tu elegiste: " + eleccionJugador);
-        console.log("El Bot eligió: " + eleccionBot);
-        
-        if (eleccionJugador === eleccionBot) {
-                console.log(resultados.empate);
+            const mensaje = `
+                <p>Tu elegiste: ${eleccionJugador}</p>
+                <p>El Bot eligió: ${eleccionBot}</p>
+            `;
+
+            mostrarResultado(mensaje);
+
+            if (eleccionJugador === eleccionBot) {
+                mostrarResultado(`<p>${resultados.empate}</p>`);
             } else if (
                 (eleccionJugador === "piedra" && eleccionBot === "tijera") ||
                 (eleccionJugador === "papel" && eleccionBot === "piedra") ||
                 (eleccionJugador === "tijera" && eleccionBot === "papel")
             ) {
-                console.log(resultados.victoria);
+                mostrarResultado(`<p>${resultados.victoria}</p>`);
             } else {
-                console.log(resultados.derrota);
-            } 
-        }else{
-                console.log("elige una opcion valida: piedra, papel o tijera");
+                mostrarResultado(`<p>${resultados.derrota}</p>`);
             }
-        
+
+            mostrarResultado("<p>---------------resultado----------------</p>");
+        } else {
+            mostrarResultado("<p>Elige una opción válida: piedra, papel o tijera</p>");
+        }
+    };
+
+
+const jugar = async () => {
+    let jugar = true;
+
+    while (jugar) {
+        await jugarRonda();
     }
 };
 
-
-jugar();
-
+const iniciarJuego = () => {
+    mostrarResultado("<p>¡Comienza el juego!</p>");
+    jugar();
+};
 

@@ -1,11 +1,46 @@
 body{
-    background-color: green;
+    background-color: rgb(122, 165, 122);
+}
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 4rem;
+    text-align: center;
+    color: rgb(10, 70, 10);
+}
+
+.button{
+    color: rgb(0, 89, 255);
+    background-color: rgb(91, 243, 3);
+    border-radius: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    margin-left: 850px;
 }
 
 .grid{
     display: grid;
-    grid-template-columns: 3;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1;
-    margin-left: 600px;
+
 }
 
+.one{
+    grid-column: 1;
+    margin-top: 50px;
+    margin-left: 300px;
+    
+}
+
+.two{
+  grid-column: 2;
+  margin-top: 50px;  
+  margin-left: 150px;
+  
+}
+
+.three{
+  grid-column: 3;
+  margin-top: 50px;  
+  
+}
