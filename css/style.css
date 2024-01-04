@@ -10,12 +10,13 @@ h1{
 }
 
 .button{
-    color: rgb(0, 89, 255);
+    color: rgb(47, 53, 141);
     background-color: rgb(91, 243, 3);
     border-radius: 20px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5rem;
-    margin-left: 850px;
+    margin-left: 800px;
+    margin-top: 20px;
 }
 
 .grid{
@@ -43,4 +44,15 @@ h1{
   grid-column: 3;
   margin-top: 50px;  
   
+}
+
+.input{
+    width: 300px;
+    height: 30px;
+    background-color: rgb(51, 82, 47);
+    display: flex;
+    flex-direction: row;
+    margin-left: 800px;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
 }

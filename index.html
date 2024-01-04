@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPT</title>
+    <title>piedra, papel o tijera</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <h1>Piedra, Papel o Tijera</h1>
     <div id="resultado"></div>
-    <button class="button" onclick="jugar()">Jugar</button>
-    <script src="./js/main.js"></script>
+    <input class="input" type="text" id="opcionJugador" placeholder="Elige piedra, papel o tijera">
+    <button class="button" onclick="jugarRonda()">Ver resultado</button>
+    <div id="resultadoRonda"></div>
 
 <div class="grid">
     <img src="img/papel.png" class="one" alt="">
@@ -18,5 +19,7 @@
     <img src="./img/tijera.png" class="three" alt="">
 </div>
 
+
+<script src="./js/main.js"></script>
 </body>
 </html>

@@ -13,56 +13,55 @@ const mostrarResultado = (mensaje) => {
     resultadoElement.innerHTML += mensaje;
 };
 
+const mostrarResultadoRonda = (mensaje) => {
+    const resultadoRondaElement = document.getElementById("resultadoRonda");
+    resultadoRondaElement.innerHTML = mensaje;
+};
+
+const guardarResultadoLocalStorage = (resultado) => {
+    let resultadosGuardados = JSON.parse(localStorage.getItem("resultados")) || [];
+    resultadosGuardados.push(resultado);
+    localStorage.setItem("resultados", JSON.stringify(resultadosGuardados));
+};
+
 const jugarRonda = async () => {
-    let eleccionJugador = prompt(
-        "Elige piedra, papel o tijera (si te arrepentiste pon 'salir')"
-    ).toLowerCase();
+    let eleccionJugador = document.getElementById("opcionJugador").value.toLowerCase();
 
-        if (eleccionJugador === "salir") {
-            jugar = false;
-            mostrarResultado("<p>Hasta luego</p>");
-            return;
-        }
+    if (eleccionJugador === "salir") {
+        jugar = false;
+        mostrarResultado("<p>Hasta luego</p>");
+        return;
+    }
 
-        if (opciones.includes(eleccionJugador)) {
-            let eleccionBot = opcionRandom();
+    if (opciones.includes(eleccionJugador)) {
+        let eleccionBot = opcionRandom();
 
-            const mensaje = `
-                <p>Tu elegiste: ${eleccionJugador}</p>
-                <p>El Bot eligió: ${eleccionBot}</p>
-            `;
+        const mensaje = `
+            <p>Tu elegiste: ${eleccionJugador}</p>
+            <p>El Bot eligió: ${eleccionBot}</p>
+        `;
 
-            mostrarResultado(mensaje);
+        mostrarResultado(mensaje);
 
-            if (eleccionJugador === eleccionBot) {
-                mostrarResultado(`<p>${resultados.empate}</p>`);
-            } else if (
-                (eleccionJugador === "piedra" && eleccionBot === "tijera") ||
-                (eleccionJugador === "papel" && eleccionBot === "piedra") ||
-                (eleccionJugador === "tijera" && eleccionBot === "papel")
-            ) {
-                mostrarResultado(`<p>${resultados.victoria}</p>`);
-            } else {
-                mostrarResultado(`<p>${resultados.derrota}</p>`);
-            }
+        let resultadoRonda = "";
 
-            mostrarResultado("<p>---------------resultado----------------</p>");
+        if (eleccionJugador === eleccionBot) {
+            resultadoRonda = `<p>${resultados.empate}</p>`;
+        } else if (
+            (eleccionJugador === "piedra" && eleccionBot === "tijera") ||
+            (eleccionJugador === "papel" && eleccionBot === "piedra") ||
+            (eleccionJugador === "tijera" && eleccionBot === "papel")
+        ) {
+            resultadoRonda = `<p>${resultados.victoria}</p>`;
         } else {
-            mostrarResultado("<p>Elige una opción válida: piedra, papel o tijera</p>");
+            resultadoRonda = `<p>${resultados.derrota}</p>`;
         }
-    };
 
+        mostrarResultadoRonda(resultadoRonda);
+        mostrarResultado("<p>---------------resultado----------------</p>");
 
-const jugar = async () => {
-    let jugar = true;
-
-    while (jugar) {
-        await jugarRonda();
+        guardarResultadoLocalStorage(resultadoRonda);
+    } else {
+        mostrarResultado("<p>Elige una opción válida: piedra, papel o tijera</p>");
     }
 };
-
-const iniciarJuego = () => {
-    mostrarResultado("<p>¡Comienza el juego!</p>");
-    jugar();
-};
-
