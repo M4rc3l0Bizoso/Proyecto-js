@@ -1,3 +1,4 @@
+
 const opciones = ["piedra", "papel", "tijera"];
 
 const opcionRandom = () => opciones[Math.floor(Math.random() * 3)];
@@ -8,14 +9,46 @@ const resultados = {
     derrota: "Te ganó un bot :(",
 };
 
-const mostrarResultado = (mensaje) => {
-    const resultadoElement = document.getElementById("resultado");
-    resultadoElement.innerHTML += mensaje;
+const mostrarResultado = (mensaje, resultadoRonda) => {
+    Swal.fire({
+        html: mensaje,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 2000,
+        didClose: () => {
+            mostrarResultadoRonda(resultadoRonda);
+        },
+        customClass: {
+            popup: 'elecciones',
+            content:resultadoRonda.toLowerCase(),
+        },
+    });
 };
 
 const mostrarResultadoRonda = (mensaje) => {
-    const resultadoRondaElement = document.getElementById("resultadoRonda");
-    resultadoRondaElement.innerHTML = mensaje;
+    Swal.fire({
+        html: mensaje,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: {
+            popup: 'resultado',
+        }
+    });
+};
+
+const mostrarError = (mensaje) => {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        html: mensaje,
+        position: 'center',
+        showConfirmButton: true,
+        customClass: {
+            popup: 'error',
+        }
+        
+    });
 };
 
 const guardarResultadoLocalStorage = (resultado) => {
@@ -24,26 +57,22 @@ const guardarResultadoLocalStorage = (resultado) => {
     localStorage.setItem("resultados", JSON.stringify(resultadosGuardados));
 };
 
-const jugarRonda = async () => {
+const jugarRonda = () => {
     let eleccionJugador = document.getElementById("opcionJugador").value.toLowerCase();
 
     if (eleccionJugador === "salir") {
-        jugar = false;
-        mostrarResultado("<p>Hasta luego</p>");
+        mostrarResultado("<p>Hasta luego</p>", "");
         return;
     }
 
     if (opciones.includes(eleccionJugador)) {
         let eleccionBot = opcionRandom();
+        let resultadoRonda = ""; 
 
         const mensaje = `
             <p>Tu elegiste: ${eleccionJugador}</p>
             <p>El Bot eligió: ${eleccionBot}</p>
         `;
-
-        mostrarResultado(mensaje);
-
-        let resultadoRonda = "";
 
         if (eleccionJugador === eleccionBot) {
             resultadoRonda = `<p>${resultados.empate}</p>`;
@@ -57,11 +86,9 @@ const jugarRonda = async () => {
             resultadoRonda = `<p>${resultados.derrota}</p>`;
         }
 
-        mostrarResultadoRonda(resultadoRonda);
-        mostrarResultado("<p>---------------resultado----------------</p>");
-
+        mostrarResultado(mensaje, resultadoRonda);
         guardarResultadoLocalStorage(resultadoRonda);
     } else {
-        mostrarResultado("<p>Elige una opción válida: piedra, papel o tijera</p>");
+        mostrarError("Elige una opción válida: piedra, papel o tijera");
     }
 };

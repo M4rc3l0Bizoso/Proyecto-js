@@ -1,58 +1,84 @@
-body{
-    background-color: rgb(122, 165, 122);
+body {
+    background-color: #111111;
+    margin: 0;
+    overflow-x: hidden;
 }
-
 h1{
     font-family: 'Courier New', Courier, monospace;
     font-size: 4rem;
     text-align: center;
-    color: rgb(10, 70, 10);
+    color:whitesmoke ;
 }
 
 .button{
-    color: rgb(47, 53, 141);
-    background-color: rgb(91, 243, 3);
-    border-radius: 20px;
+    color:black;
+    background-color:ghostwhite;
+    border-radius: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5rem;
-    margin-left: 800px;
+    margin:0 auto;
+    text-align: center;
+    display: block;
     margin-top: 20px;
+
 }
 
-.grid{
+.grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1;
-
+    justify-content: center; 
+    align-items: center;
+    column-gap: 100px;
+    margin-left: 200px;
 }
 
-.one{
+.one {
     grid-column: 1;
-    margin-top: 50px;
-    margin-left: 300px;
-    
 }
 
-.two{
-  grid-column: 2;
-  margin-top: 50px;  
-  margin-left: 150px;
-  
+.two {
+    grid-column: 2;
 }
 
-.three{
-  grid-column: 3;
-  margin-top: 50px;  
-  
+.three {
+    grid-column: 3;
 }
+
 
 .input{
-    width: 300px;
-    height: 30px;
-    background-color: rgb(51, 82, 47);
-    display: flex;
-    flex-direction: row;
-    margin-left: 800px;
-    font-size: 1rem;
+    width: 420px;
+    height: 40px;
     font-family: 'Courier New', Courier, monospace;
+    background-color: whitesmoke;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    box-shadow: inset;
+}
+
+.resultado{
+    background-color:whitesmoke;
+    color: #111111;
+    border-radius: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+}
+
+.elecciones{
+    background-color:whitesmoke;
+    color: #111111;
+    border-radius: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+}
+
+.error{
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
 }
