@@ -7,12 +7,12 @@ h1{
     font-family: 'Courier New', Courier, monospace;
     font-size: 4rem;
     text-align: center;
-    color:whitesmoke ;
+    color:rgb(62, 119, 204) ;
 }
 
 .button{
     color:black;
-    background-color:ghostwhite;
+    background-color:rgb(147, 213, 229);
     border-radius: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5rem;
@@ -50,7 +50,7 @@ h1{
     width: 420px;
     height: 40px;
     font-family: 'Courier New', Courier, monospace;
-    background-color: whitesmoke;
+background-color: rgb(147, 213, 229);
     text-align: center;
     display: block;
     margin: 0 auto;
@@ -60,7 +60,7 @@ h1{
 }
 
 .resultado{
-    background-color:whitesmoke;
+    background-color:rgb(31, 151, 231);
     color: #111111;
     border-radius: 20px;
     font-family: 'Courier New', Courier, monospace;
@@ -68,7 +68,7 @@ h1{
 }
 
 .elecciones{
-    background-color:whitesmoke;
+    background-color:rgb(31, 151, 231);
     color: #111111;
     border-radius: 20px;
     font-family: 'Courier New', Courier, monospace;

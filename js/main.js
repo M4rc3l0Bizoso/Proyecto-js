@@ -1,12 +1,9 @@
-
 const opciones = ["piedra", "papel", "tijera"];
-
-const opcionRandom = () => opciones[Math.floor(Math.random() * 3)];
 
 const resultados = {
     empate: "Empate :o",
     victoria: "Ganaste :)",
-    derrota: "Te ganó un bot :(",
+    derrota: "Te gano un bot :(",
 };
 
 const mostrarResultado = (mensaje, resultadoRonda) => {
@@ -20,7 +17,6 @@ const mostrarResultado = (mensaje, resultadoRonda) => {
         },
         customClass: {
             popup: 'elecciones',
-            content:resultadoRonda.toLowerCase(),
         },
     });
 };
@@ -62,32 +58,41 @@ const jugarRonda = () => {
 
     if (eleccionJugador === "salir") {
         mostrarResultado("<p>Hasta luego</p>", "");
-        return;
+       return;
     }
 
     if (opciones.includes(eleccionJugador)) {
-        let eleccionBot = opcionRandom();
-        let resultadoRonda = ""; 
+        fetch('data/data.json') 
+            .then(response => response.json())
+            .then(data => {
+                let eleccionBot = data.eleccionesBot[Math.floor(Math.random() * data.eleccionesBot.length)];
+                let resultadoRonda = "";
 
-        const mensaje = `
-            <p>Tu elegiste: ${eleccionJugador}</p>
-            <p>El Bot eligió: ${eleccionBot}</p>
-        `;
+                const mensaje = `
+                    <p>Tu elegiste: ${eleccionJugador}</p>
+                    <p>El Bot eligió: ${eleccionBot}</p>
+                `;
 
-        if (eleccionJugador === eleccionBot) {
-            resultadoRonda = `<p>${resultados.empate}</p>`;
-        } else if (
-            (eleccionJugador === "piedra" && eleccionBot === "tijera") ||
-            (eleccionJugador === "papel" && eleccionBot === "piedra") ||
-            (eleccionJugador === "tijera" && eleccionBot === "papel")
-        ) {
-            resultadoRonda = `<p>${resultados.victoria}</p>`;
-        } else {
-            resultadoRonda = `<p>${resultados.derrota}</p>`;
-        }
+                if (eleccionJugador === eleccionBot) {
+                    resultadoRonda = `<p>${resultados.empate}</p>`;
+                } else if (
+                    (eleccionJugador === "piedra" && eleccionBot === "tijera") ||
+                    (eleccionJugador === "papel" && eleccionBot === "piedra") ||
+                    (eleccionJugador === "tijera" && eleccionBot === "papel")
+                ) {
+                    resultadoRonda = `<p>${resultados.victoria}</p>`;
+                } else {
+                    resultadoRonda = `<p>${resultados.derrota}</p>`;
+                }
 
-        mostrarResultado(mensaje, resultadoRonda);
-        guardarResultadoLocalStorage(resultadoRonda);
+                mostrarResultado(mensaje, resultadoRonda);
+                guardarResultadoLocalStorage(resultadoRonda);
+            })
+            .catch(error => {
+                console.error('Error al obtener datos:', error);
+                mostrarError('Error al obtener datos.');
+            });
+        
     } else {
         mostrarError("Elige una opción válida: piedra, papel o tijera");
     }
