@@ -70,7 +70,7 @@ const jugarRonda = () => {
 
                 const mensaje = `
                     <p>Tu elegiste: ${eleccionJugador}</p>
-                    <p>El Bot eligió: ${eleccionBot}</p>
+                    <p>El Bot eligio: ${eleccionBot}</p>
                 `;
 
                 if (eleccionJugador === eleccionBot) {
