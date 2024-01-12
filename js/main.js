@@ -16,7 +16,7 @@ const mostrarResultado = (mensaje, resultadoRonda) => {
             mostrarResultadoRonda(resultadoRonda);
         },
         customClass: {
-            popup: 'elecciones',
+            popup: 'eleccion',
         },
     });
 };
@@ -80,6 +80,7 @@ const jugarRonda = () => {
                     (eleccionJugador === "papel" && eleccionBot === "piedra") ||
                     (eleccionJugador === "tijera" && eleccionBot === "papel")
                 ) {
+
                     resultadoRonda = `<p>${resultados.victoria}</p>`;
                 } else {
                     resultadoRonda = `<p>${resultados.derrota}</p>`;

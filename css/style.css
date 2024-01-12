@@ -50,25 +50,24 @@ h1{
     width: 420px;
     height: 40px;
     font-family: 'Courier New', Courier, monospace;
-background-color: rgb(147, 213, 229);
+    background-color: rgb(147, 213, 229);
     text-align: center;
     display: block;
     margin: 0 auto;
     font-size: 1.5rem;
     border-radius: 30px;
-    box-shadow: inset;
 }
 
 .resultado{
-    background-color:rgb(31, 151, 231);
+    background-color:rgb(10, 173, 223);
     color: #111111;
     border-radius: 20px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 2rem;
 }
 
-.elecciones{
-    background-color:rgb(31, 151, 231);
+.eleccion{
+    background-color:rgb(10, 173, 223);
     color: #111111;
     border-radius: 20px;
     font-family: 'Courier New', Courier, monospace;
